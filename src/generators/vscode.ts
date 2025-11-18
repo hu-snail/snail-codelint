@@ -66,14 +66,23 @@ function deepEqual(obj1: any, obj2: any): boolean {
 
   if (Array.isArray(obj1) && Array.isArray(obj2)) {
     if (obj1.length !== obj2.length) return false;
-    const sorted1 = [...obj1].sort();
-    const sorted2 = [...obj2].sort();
+    // 对于数组，我们需要深度比较每个元素，所以先转换为字符串进行排序
+    const sorted1 = [...obj1].sort((a, b) => {
+      const strA = JSON.stringify(a);
+      const strB = JSON.stringify(b);
+      return strA.localeCompare(strB);
+    });
+    const sorted2 = [...obj2].sort((a, b) => {
+      const strA = JSON.stringify(a);
+      const strB = JSON.stringify(b);
+      return strA.localeCompare(strB);
+    });
     return sorted1.every((val, idx) => deepEqual(val, sorted2[idx]));
   }
 
   if (isObject(obj1) && isObject(obj2)) {
-    const keys1 = Object.keys(obj1).sort();
-    const keys2 = Object.keys(obj2).sort();
+    const keys1 = Object.keys(obj1).sort((a, b) => a.localeCompare(b));
+    const keys2 = Object.keys(obj2).sort((a, b) => a.localeCompare(b));
 
     if (keys1.length !== keys2.length) return false;
 
