@@ -21,12 +21,18 @@ export async function runCLI() {
       choices: ['pnpm', 'npm', 'yarn'],
       default: 'pnpm',
     },
+    {
+      type: 'confirm',
+      name: 'enableLefthook',
+      message: '是否启用 Git hooks (lefthook)?',
+      default: true,
+    },
   ]);
 
   const spinner = ora('正在配置代码规范...').start();
 
   try {
-    await setupLint(answers.projectType, answers.packageManager);
+    await setupLint(answers.projectType, answers.packageManager, answers.enableLefthook);
     spinner.succeed(chalk.green('✨ 配置完成！'));
     printSuccess();
   } catch (error) {

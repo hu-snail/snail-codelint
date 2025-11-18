@@ -4,7 +4,11 @@ import path from 'path';
 import chalk from 'chalk';
 import { ProjectType } from '../types/index.js';
 
-export async function updatePackageScripts(cwd: string, projectType: ProjectType) {
+export async function updatePackageScripts(
+  cwd: string,
+  projectType: ProjectType,
+  enableLefthook: boolean = true
+) {
   const packageJsonPath = path.join(cwd, 'package.json');
 
   if (!existsSync(packageJsonPath)) {
@@ -29,9 +33,11 @@ export async function updatePackageScripts(cwd: string, projectType: ProjectType
   packageJson.scripts['format:check'] =
     'prettier --check "**/*.{js,jsx,ts,tsx,vue,json,css,scss,md}"';
 
-  // 添加 lefthook 相关脚本
-  packageJson.scripts.prepare = 'lefthook install';
-  packageJson.scripts['lefthook:install'] = 'lefthook install';
+  // 根据用户选择决定是否添加 lefthook 相关脚本
+  if (enableLefthook) {
+    packageJson.scripts.prepare = 'lefthook install';
+    packageJson.scripts['lefthook:install'] = 'lefthook install';
+  }
 
   await writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
 }

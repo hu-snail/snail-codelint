@@ -4,9 +4,10 @@ import { ProjectType, PackageManager } from '../types/index.js';
 
 export async function installDependencies(
   packageManager: PackageManager,
-  projectType: ProjectType
+  projectType: ProjectType,
+  enableLefthook: boolean = true
 ) {
-  const deps = getDependencies(projectType);
+  const deps = getDependencies(projectType, enableLefthook);
 
   console.log(chalk.cyan(`\n📦 正在安装依赖: ${deps.join(', ')}`));
 
@@ -19,9 +20,14 @@ export async function installDependencies(
   });
 }
 
-function getDependencies(projectType: ProjectType): string[] {
-  const baseDeps = ['oxlint', 'prettier', 'lefthook'];
+function getDependencies(projectType: ProjectType, enableLefthook: boolean = true): string[] {
+  const baseDeps = ['oxlint', 'prettier'];
   const deps = [...baseDeps];
+
+  // 根据用户选择决定是否安装 lefthook
+  if (enableLefthook) {
+    deps.push('lefthook');
+  }
 
   // TypeScript 项目添加 tsgolint 支持
   // 检查项目类型：vue3-ts, react-ts, typescript
