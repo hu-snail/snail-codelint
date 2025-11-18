@@ -78,7 +78,9 @@ function configToYaml(config: any, indent = 0): string {
   let yaml = '';
 
   for (const [key, value] of Object.entries(config)) {
-    const yamlKey = key.replace(/_/g, '-');
+    // 某些属性需要保持下划线格式（如 stage_fixed），其他转换为连字符
+    const keysToKeepUnderscore = ['stage_fixed'];
+    const yamlKey = keysToKeepUnderscore.includes(key) ? key : key.replace(/_/g, '-');
 
     if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
       if (Object.keys(value).length === 0) {
