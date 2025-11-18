@@ -20,7 +20,7 @@ export async function installDependencies(
 }
 
 function getDependencies(projectType: ProjectType): string[] {
-  const baseDeps = ['oxlint', 'prettier'];
+  const baseDeps = ['oxlint', 'prettier', 'lefthook'];
   const deps = [...baseDeps];
 
   // TypeScript 项目添加 tsgolint 支持

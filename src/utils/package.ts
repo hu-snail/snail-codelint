@@ -29,5 +29,9 @@ export async function updatePackageScripts(cwd: string, projectType: ProjectType
   packageJson.scripts['format:check'] =
     'prettier --check "**/*.{js,jsx,ts,tsx,vue,json,css,scss,md}"';
 
+  // 添加 lefthook 相关脚本
+  packageJson.scripts.prepare = 'lefthook install';
+  packageJson.scripts['lefthook:install'] = 'lefthook install';
+
   await writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
 }
