@@ -23,6 +23,11 @@ function getDependencies(projectType: ProjectType): string[] {
   const baseDeps = ['oxlint', 'prettier'];
   const deps = [...baseDeps];
 
+  // TypeScript 项目添加 tsgolint 支持
+  if (projectType.includes('ts')) {
+    deps.push('oxlint-tsgolint@latest');
+  }
+
   if (projectType.includes('vue3')) {
     deps.push('prettier-plugin-vue');
   }

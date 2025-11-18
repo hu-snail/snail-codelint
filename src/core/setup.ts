@@ -17,5 +17,5 @@ export async function setupLint(projectType: ProjectType, packageManager: Packag
   await installDependencies(packageManager, projectType);
 
   // 更新 package.json scripts
-  await updatePackageScripts(cwd);
+  await updatePackageScripts(cwd, projectType);
 }
