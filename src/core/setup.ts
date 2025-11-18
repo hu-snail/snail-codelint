@@ -10,7 +10,7 @@ export async function setupLint(projectType: ProjectType, packageManager: Packag
 
   // 生成配置文件
   await generatePrettierConfig(cwd, projectType);
-  await generateOxlintConfig(cwd, projectType);
+  await generateOxlintConfig(cwd, projectType, packageManager);
   await generateVSCodeConfig(cwd, projectType);
 
   // 安装依赖

@@ -24,7 +24,8 @@ function getDependencies(projectType: ProjectType): string[] {
   const deps = [...baseDeps];
 
   // TypeScript 项目添加 tsgolint 支持
-  if (projectType.includes('ts')) {
+  // 检查项目类型：vue3-ts, react-ts, typescript
+  if (projectType === 'typescript' || projectType.includes('-ts')) {
     deps.push('oxlint-tsgolint@latest');
   }
 

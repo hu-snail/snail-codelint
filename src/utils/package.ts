@@ -15,15 +15,16 @@ export async function updatePackageScripts(cwd: string, projectType: ProjectType
   const packageJson = JSON.parse(await readFile(packageJsonPath, 'utf-8'));
 
   packageJson.scripts = packageJson.scripts || {};
-  
+
   // TypeScript 项目使用类型感知的 lint
-  if (projectType.includes('ts')) {
+  // 检查项目类型：vue3-ts, react-ts, typescript
+  if (projectType === 'typescript' || projectType.includes('-ts')) {
     packageJson.scripts.lint = 'oxlint --type-aware .';
     packageJson.scripts['lint:basic'] = 'oxlint .';
   } else {
     packageJson.scripts.lint = 'oxlint .';
   }
-  
+
   packageJson.scripts.format = 'prettier --write "**/*.{js,jsx,ts,tsx,vue,json,css,scss,md}"';
   packageJson.scripts['format:check'] =
     'prettier --check "**/*.{js,jsx,ts,tsx,vue,json,css,scss,md}"';

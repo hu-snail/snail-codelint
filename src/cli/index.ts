@@ -7,7 +7,6 @@ import { printWelcome, printSuccess } from './output.js';
 
 export async function runCLI() {
   printWelcome();
-
   const answers = await inquirer.prompt([
     {
       type: 'list',
