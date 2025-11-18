@@ -18,6 +18,9 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -33,6 +36,10 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "vetur.format.enable": false,
+  "vetur.validation.template": false,
+  "vetur.validation.script": false,
+  "vetur.validation.style": false,
   "files.exclude": {
     "**/.git": true,
     "**/.DS_Store": true,
@@ -51,5 +58,7 @@
     "**/pnpm-lock.yaml": true,
     "**/package-lock.json": true,
     "**/yarn.lock": true
-  }
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.importModuleSpecifier": "relative"
 }

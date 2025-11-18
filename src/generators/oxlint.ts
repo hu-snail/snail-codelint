@@ -1,9 +1,6 @@
-import { writeFile } from 'fs/promises';
 import { execa } from 'execa';
-import path from 'path';
 import chalk from 'chalk';
 import { ProjectType, PackageManager } from '../types/index.js';
-import { getOxlintTemplate } from '../utils/template.js';
 
 export async function generateOxlintConfig(
   cwd: string,
@@ -30,11 +27,9 @@ export async function generateOxlintConfig(
       console.log(chalk.green('✅ 已生成 .oxlintrc.json'));
     } catch {
       console.log(chalk.red('❌ oxlint --init 执行失败，请手动运行: pnpm dlx oxlint --init'));
-      // TypeScript 项目不生成 oxlint.json，只使用 .oxlintrc.json
     }
   } else {
-    // 其他项目类型使用模板生成 oxlint.json
-    const config = await getOxlintTemplate(projectType);
-    await writeFile(path.join(cwd, 'oxlint.json'), JSON.stringify(config, null, 2));
+    // 其他项目类型不生成 oxlint 配置文件
+    console.log(chalk.gray('ℹ️  非 TypeScript 项目，跳过 oxlint 配置生成'));
   }
 }

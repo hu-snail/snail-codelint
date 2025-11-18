@@ -33,16 +33,6 @@ export async function getPrettierTemplate(projectType: ProjectType): Promise<any
 }
 
 /**
- * 读取 Oxlint 模板配置
- */
-export async function getOxlintTemplate(projectType: ProjectType): Promise<any> {
-  const templateRoot = getTemplateRoot();
-  const templatePath = join(templateRoot, 'oxlint', `${projectType}.json`);
-  const content = await readFile(templatePath, 'utf-8');
-  return JSON.parse(content);
-}
-
-/**
  * 读取 VSCode settings 模板配置
  */
 export async function getVSCodeSettingsTemplate(projectType: ProjectType): Promise<any> {
@@ -62,7 +52,10 @@ export async function getVSCodeSettingsTemplate(projectType: ProjectType): Promi
   const baseConfig = JSON.parse(content);
 
   // 如果是 vue3-ts 或 react-ts，需要合并 TypeScript 配置
-  if (projectType.includes('ts') && (projectType.includes('vue3') || projectType.includes('react'))) {
+  if (
+    projectType.includes('ts') &&
+    (projectType.includes('vue3') || projectType.includes('react'))
+  ) {
     const tsTemplatePath = join(templateRoot, 'vscode', 'settings-typescript.json');
     const tsContent = await readFile(tsTemplatePath, 'utf-8');
     const tsConfig = JSON.parse(tsContent);
@@ -93,16 +86,19 @@ export async function getVSCodeExtensionsTemplate(projectType: ProjectType): Pro
   const baseConfig = JSON.parse(content);
 
   // 如果是 vue3-ts 或 react-ts，需要合并 TypeScript 扩展
-  if (projectType.includes('ts') && (projectType.includes('vue3') || projectType.includes('react'))) {
+  if (
+    projectType.includes('ts') &&
+    (projectType.includes('vue3') || projectType.includes('react'))
+  ) {
     const tsTemplatePath = join(templateRoot, 'vscode', 'extensions-typescript.json');
     const tsContent = await readFile(tsTemplatePath, 'utf-8');
     const tsConfig = JSON.parse(tsContent);
     // 合并扩展推荐列表，去重
     const mergedRecommendations = [
-      ...new Set([...baseConfig.recommendations, ...tsConfig.recommendations])
+      ...new Set([...baseConfig.recommendations, ...tsConfig.recommendations]),
     ];
     return {
-      recommendations: mergedRecommendations
+      recommendations: mergedRecommendations,
     };
   }
 

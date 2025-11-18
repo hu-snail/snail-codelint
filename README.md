@@ -44,7 +44,8 @@ snail-codelint
 
 - 生成 `.prettierrc.json` 配置文件
 - 生成 `.prettierignore` 忽略文件
-- 生成 `oxlint.json` 配置文件
+- 生成 `.vscode/settings.json` 和 `.vscode/extensions.json` 配置文件
+- TypeScript 项目会使用 `oxlint --init` 生成 `.oxlintrc.json` 配置文件
 - 安装必要的依赖
 - 在 `package.json` 中添加 lint 和 format 脚本
 

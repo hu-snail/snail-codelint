@@ -8,7 +8,8 @@ export function printSuccess() {
   console.log(chalk.cyan('\n📝 已生成的文件:'));
   console.log(chalk.gray('  - .prettierrc.json'));
   console.log(chalk.gray('  - .prettierignore'));
-  console.log(chalk.gray('  - oxlint.json'));
+  console.log(chalk.gray('  - .vscode/settings.json'));
+  console.log(chalk.gray('  - .vscode/extensions.json'));
 
   console.log(chalk.cyan('\n🚀 可用的命令:'));
   console.log(chalk.gray('  - npm run lint       # 运行代码检查'));

@@ -9,5 +9,6 @@
   "endOfLine": "lf",
   "bracketSpacing": true,
   "bracketSameLine": false,
-  "proseWrap": "preserve"
+  "vueIndentScriptAndStyle": false,
+  "singleAttributePerLine": false
 }
