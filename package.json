@@ -18,7 +18,9 @@
     "lint:basic": "oxlint .",
     "prepare": "lefthook install",
     "lefthook:install": "lefthook install",
-    "deploy": "node scripts/deploy.js"
+    "deploy": "node scripts/deploy.js",
+    "publish:public": "npm publish --access public",
+    "publish:beta": "npm publish --tag beta"
   },
   "keywords": [
     "lint",

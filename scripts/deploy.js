@@ -269,13 +269,13 @@ class DeployScript {
     ];
 
     if (releaseType === 'beta') {
-      steps.push({ name: '发布 Beta 版本', command: ['npm', ['run', 'publish:beta']] });
+      steps.push({ name: '发布 Beta 版本', command: ['npm', ['publish', '--tag', 'beta']] });
     } else {
       steps.push({
         name: `更新版本 (${releaseType})`,
         command: ['npm', ['version', releaseType]],
       });
-      steps.push({ name: '发布到 npm', command: ['npm', ['run', 'publish:public']] });
+      steps.push({ name: '发布到 npm', command: ['npm', ['publish', '--access', 'public']] });
       steps.push({ name: '推送 Git 标签', command: ['git', ['push', '--follow-tags']] });
     }
 
