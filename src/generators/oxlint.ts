@@ -26,7 +26,7 @@ export async function generateOxlintConfig(
       });
       console.log(chalk.green('✅ 已生成 .oxlintrc.json'));
     } catch {
-      console.log(chalk.red('❌ oxlint --init 执行失败，请手动运行: pnpm dlx oxlint --init'));
+      console.log(chalk.red('❌ oxlint --init 执行失败，请手动运行：pnpm dlx oxlint --init'));
     }
   } else {
     // 其他项目类型不生成 oxlint 配置文件
