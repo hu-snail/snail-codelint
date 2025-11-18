@@ -1,0 +1,61 @@
+{
+  "name": "snail-codelint",
+  "version": "1.0.0",
+  "description": "通用代码规范检查和优化工具，支持 Vue3/React/TypeScript 项目，基于 oxlint + prettier 构建",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "snail-codelint": "./bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "node bin/cli.js",
+    "prepublishOnly": "npm run build",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "lint",
+    "linter",
+    "oxlint",
+    "prettier",
+    "code-quality",
+    "code-style",
+    "vue3",
+    "react",
+    "typescript",
+    "javascript",
+    "cli",
+    "formatter"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/snail-codelint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/snail-codelint/issues"
+  },
+  "homepage": "https://github.com/yourusername/snail-codelint#readme",
+  "files": [
+    "dist",
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "execa": "^8.0.1",
+    "inquirer": "^9.2.12",
+    "ora": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

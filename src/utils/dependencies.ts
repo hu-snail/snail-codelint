@@ -1,0 +1,31 @@
+import { execa } from 'execa';
+import chalk from 'chalk';
+import { ProjectType, PackageManager } from '../types/index.js';
+
+export async function installDependencies(
+  packageManager: PackageManager,
+  projectType: ProjectType
+) {
+  const deps = getDependencies(projectType);
+
+  console.log(chalk.cyan(`\n📦 正在安装依赖: ${deps.join(', ')}`));
+
+  const installCmd = packageManager === 'yarn' ? 'add' : 'install';
+  const devFlag = '-D';
+
+  await execa(packageManager, [installCmd, devFlag, ...deps], {
+    stdio: 'inherit',
+    cwd: process.cwd(),
+  });
+}
+
+function getDependencies(projectType: ProjectType): string[] {
+  const baseDeps = ['oxlint', 'prettier'];
+  const deps = [...baseDeps];
+
+  if (projectType.includes('vue3')) {
+    deps.push('prettier-plugin-vue');
+  }
+
+  return deps;
+}
